@@ -9,17 +9,45 @@ const Main = () => {
         {id:1,title:'InProgress',list:[{id:2,body:'Помыть попу'}]},
         {id:2,title:'Done',list:[{id:3,body:'Покакать'}]}
     ])
-    const [input,setInput] = useState('')
     const [active,setActive] = useState(false)
     const addNewTask = (task) =>{
+        const findBiggestId = () =>{
+            return Math.max(...boards.map(board =>board.list).flat().map(item =>item.id))
+        }
         const newBoards = [...boards]
-        ///Поисковичек айди
-        newBoards[0].list.push({})
+        const newId = findBiggestId()
+        newBoards[0].list.push({id:newId,body:task})
+        setBoards(newBoards)
+    }
+    const removeTask = (board,task) =>{
+        const newBoards = [...boards]
+        const boardId = boards.indexOf(board)
+        const taskId = boards[boardId].list.indexOf(task)
+        newBoards[boardId].list.splice(taskId,1)
+        setBoards(newBoards)
+    }
+    const handleTaskMove = (prevBoard,newBoard) =>{
+        let result = null
+        setBoards(boards.map(b =>{
+            if (b.id === prevBoard){
+                result = prevBoard
+            }
+            else if (b.id === newBoard){
+                result = newBoard
+            }
+            else
+                result = b
+            return result
+        }))
+    }
+    const handleBoardMove = (prevBoard,newBoard) =>{
+
     }
     return (
-        <div>
-            <Input />
-            <Boards boards = {boards} setBoards = {setBoards}/>
+        <div className="container">
+            <Input addNewTask = {addNewTask} />
+            <Boards boards = {boards} setBoards = {setBoards} removeTask = {removeTask} handleTaskMove = {handleTaskMove}
+            handleBoardDrop = {handleBoardDrop}/>
             <Modal active={active} setActive={setActive}/>
         </div>
     );

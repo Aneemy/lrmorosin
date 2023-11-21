@@ -1,0 +1,27 @@
+.boards__input{
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+  &>div{
+    max-width: 50%;
+  }
+}
+.boards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.boards__elem{
+  display: flex;
+  flex-direction: column;
+  background: white;
+  min-height: 30vh;
+  min-width: 25%;
+  border-radius: 25px;
+  align-items: center;
+}
+.boards__task{
+  position: relative;
+
+}
