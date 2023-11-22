@@ -1,4 +1,146 @@
 @import "boards.css";
+/* Reset CSS */
+/* Box sizing rules */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Remove default margin */
+body, h1, h2, h3, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements */
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove typeface styles in all browsers (opinionated) */
+body, button, input, select, textarea {
+  font-family: sans-serif;
+}
+
+/* Remove background and border in Firefox/IE */
+button, input {
+  overflow: visible;
+}
+
+/* Address Firefox 4+ setting line-height on input using !important in the UA stylesheet */
+button, input {
+  line-height: normal;
+}
+
+/* Reset blockquote styling to not be italicized */
+blockquote {
+  font-style: normal;
+}
+
+/* Reset button styling */
+button {
+  background: transparent;
+  padding: 0;
+}
+
+/* Reset input styling */
+input:focus {
+  outline: none;
+}
+
+/* Reset select styling */
+select:focus {
+  outline: none;
+}
+
+/* Reset textarea styling */
+textarea:focus {
+  outline: none;
+}
+
+/* Reset anchor styling */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Remove border on images inside links in IE 10 */
+img {
+  border-style: none;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add a pointer cursor to links with no underlines */
+a {
+  cursor: pointer;
+}
+
+/* Style the hr element */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+/* Responsive embeds */
+embed,
+iframe,
+object,
+audio,
+video {
+  max-width: 100%;
+}
+
+/* Remove default padding on media elements in Firefox 4+ */
+video {
+  padding: 0;
+}
+
+/* Reset form styles */
+form {
+  display: block;
+  margin: 0;
+}
+
+/* Style the mark element */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/* Style the abbr element: https://davidwalsh.name/html5-attr */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/* Reset heading margins */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Reset paragraph margins */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
 .container {
   width: 100vw;
   height: 100vh;

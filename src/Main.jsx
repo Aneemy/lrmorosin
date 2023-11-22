@@ -29,10 +29,10 @@ const Main = () => {
     const handleTaskDrop = (prevBoard,newBoard) =>{
         let result = null
         setBoards(boards.map(b =>{
-            if (b.id === prevBoard){
+            if (b.id === prevBoard.id){
                 result = prevBoard
             }
-            else if (b.id === newBoard){
+            else if (b.id === newBoard.id){
                 result = newBoard
             }
             else
