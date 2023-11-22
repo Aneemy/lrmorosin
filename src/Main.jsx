@@ -12,7 +12,7 @@ const Main = () => {
     const [active,setActive] = useState(false)
     const addNewTask = (task) =>{
         const findBiggestId = () =>{
-            return Math.max(...boards.map(board =>board.list).flat().map(item =>item.id))
+            return Math.max(...boards.map(board =>board.list).flat().map(item =>item.id))+1
         }
         const newBoards = [...boards]
         const newId = findBiggestId()
@@ -26,7 +26,7 @@ const Main = () => {
         newBoards[boardId].list.splice(taskId,1)
         setBoards(newBoards)
     }
-    const handleTaskMove = (prevBoard,newBoard) =>{
+    const handleTaskDrop = (prevBoard,newBoard) =>{
         let result = null
         setBoards(boards.map(b =>{
             if (b.id === prevBoard){
@@ -40,14 +40,19 @@ const Main = () => {
             return result
         }))
     }
-    const handleBoardMove = (prevBoard,newBoard) =>{
-
+    const moveTaskOnClick = (board,task,step) =>{
+        const newBoards = [...boards]
+        const boardIndex = boards.indexOf(board)
+        const taskIndex = boards[boardIndex].list.indexOf(task)
+        newBoards[boardIndex].list.splice(taskIndex,1)
+        newBoards[boardIndex+step].list.push(task)
+        setBoards(newBoards)
     }
     return (
         <div className="container">
             <Input addNewTask = {addNewTask} />
-            <Boards boards = {boards} setBoards = {setBoards} removeTask = {removeTask} handleTaskMove = {handleTaskMove}
-            handleBoardDrop = {handleBoardDrop}/>
+            <Boards boards = {boards} setBoards = {setBoards} removeTask = {removeTask} handleTaskDrop= {handleTaskDrop}
+            moveTaskOnClick = {moveTaskOnClick}/>
             <Modal active={active} setActive={setActive}/>
         </div>
     );

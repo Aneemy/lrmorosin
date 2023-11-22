@@ -8,8 +8,13 @@ const Input = ({addNewTask}) => {
         setInput('')
         }
     }
+    const handleEnterPress = (e) =>{
+        if(e.key == 'Enter'){
+            handleClick()
+        }
+    }
     return (
-        <div className='boards__input'>
+        <div onKeyPress={e=>handleEnterPress(e)} className='boards__input'>
             <input value = {input}  type="text" onChange = {e=>setInput(e.target.value)}/>
             <button onClick={() => handleClick()}>
                 Добавить задачку
