@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Input from "./Input";
 import Boards from "./Boards";
 import Modal from "./Modal";
+import Auth from "./Auth";
 
 const Main = () => {
     const [boards,setBoards] = useState([
@@ -50,6 +51,7 @@ const Main = () => {
     }
     return (
         <div className="container">
+            <Auth/>
             <Input addNewTask = {addNewTask} />
             <Boards boards = {boards} setBoards = {setBoards} removeTask = {removeTask} handleTaskDrop= {handleTaskDrop}
             moveTaskOnClick = {moveTaskOnClick}/>
