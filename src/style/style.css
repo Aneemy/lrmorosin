@@ -1,4 +1,5 @@
-@import "boards.css"; /* Reset CSS */
+@import "boards.css";
+/* Reset CSS */
 /* Box sizing rules */
 html {
   box-sizing: border-box;
@@ -148,6 +149,54 @@ p {
   height: 100vh;
   width: 100vw;
   background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+  width: 500px;
+  height: 300px;
+  border: 10px lavender solid;
+  border-radius: 20px;
+}
+.auth__content > div {
+  margin: 10px 0;
+}
+
+.auth__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth__buttons > div {
+  font-size: 26px;
+  margin: 0 10px;
+  background: lavender;
+  padding: 4px 12px;
+  border-radius: 15px;
+}
+.auth__buttons > div:hover {
+  cursor: pointer;
+  background: dodgerblue;
+  color: white;
+}
+.auth__buttons > div.active {
+  color: white;
+  background: dodgerblue;
+}
+.auth__buttons > div.active:hover {
+  background: blue;
+}
+
+.ui__input input {
+  font-size: 26px;
+  padding: 2px;
 }
 
 .container {
