@@ -9,7 +9,7 @@ const Auth = ({changeUser}) => {
     const [message,setMessage] = useState(null)
     const [isLogin,setIsLogin] = useState(true)
 
-    const refreshPage = (user)=> setTimeout(changeUser(user),1500)
+    const refreshPage = (user)=> setTimeout(()=>changeUser(user),1500)
     const AuthForm = () =>{
         return(
             <div className="auth__content">
@@ -24,6 +24,7 @@ const Auth = ({changeUser}) => {
         }
         else{
             const response = await registration({username,password})
+            setMessage(response.message)
         }
     }
     const sendLogReg = async () =>{
@@ -32,20 +33,21 @@ const Auth = ({changeUser}) => {
         }
         else{
             const response = await login({username,password})
-
+            setMessage(response)
         }
     }
     const Message = () =>{
+        if (message!==null){
         const tempMsg = message
         setMessage('')
-        if (tempMsg.message!==undefined){
+        if (tempMsg.message!==null&& !tempMsg.token){
             return <div>
-                Вы успешшно зарегистрировались
+                Вы успешно зарегистрировались
             </div>
         }
         else if (typeof(tempMsg.token) === 'string' ){
             const data = jwtDecode(tempMsg.token)
-            const user = data.username
+            const user = data
             localStorage.setItem('token',tempMsg.token)
             refreshPage(user)
             return <div>
@@ -54,6 +56,7 @@ const Auth = ({changeUser}) => {
         }
         return null
     }
+        }
 
     return (
         <div className="auth__bg">

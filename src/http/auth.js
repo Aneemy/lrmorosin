@@ -5,6 +5,7 @@ export async function registration(pack){
         const response = await axios.post(URL+'/auth/registration',pack)
         if (response.status == 201) {
             console.log( response.data)
+            return response.data
         }
         else{
             alert(response)
@@ -19,6 +20,7 @@ export async function login(pack){
         const response = await axios.post(URL+'/auth/login',pack)
         if (response.status == 200) {
             console.log(response.data)
+            return response.data
         }
         else{
             alert(response)

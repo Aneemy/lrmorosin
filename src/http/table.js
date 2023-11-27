@@ -3,11 +3,11 @@ import axios from "axios";
 export async function addTask(pack){
     try {
         const response = await axios.post(URL+'/table',pack)
-        if (response.status == 200) {
-            console.log( response.data)
+        if (response.status == 201) {
+            console.log( response)
         }
         else{
-            alert(response)
+            console.log(response)
         }
     }
     catch (e){
@@ -16,12 +16,14 @@ export async function addTask(pack){
 }
 export async function getAllTasks(userId){
     try {
+        console.log(123)
         const response = await axios.get(URL+`/table/${userId}`)
         if (response.status == 200) {
             console.log( response.data)
+            return response.data
         }
         else{
-            alert(response)
+            console.log(response)
         }
     }
     catch (e){
@@ -35,7 +37,7 @@ export async function deleteTask(taskId){
             console.log( response)
         }
         else{
-            alert(response)
+            console.log(response)
         }
     }
     catch (e){
@@ -49,7 +51,7 @@ export async function updateTask(taskId,pack){
             console.log( response.data)
         }
         else{
-            alert(response)
+            console.log(response)
         }
     }
     catch (e){

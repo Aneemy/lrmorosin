@@ -25,14 +25,14 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
     function handleDrop(e, board, task) {
         e.preventDefault()
         const currentDropIndex = board.list.indexOf(task)
-        updateTask(task._id,{boardInd:boards.indexOf(board),position:currentDropIndex+1})
+        updateTask(task.id,{boardInd:boards.indexOf(board),position:currentDropIndex+1})
         board.list.splice(currentDropIndex+1,0,currentTask)
         const currentTaskIndex = currentBoard.list.indexOf(currentTask)
         currentBoard.list.splice(currentTaskIndex,1)
         handleTaskDrop(currentBoard,board)
     }
     function handleBoardDrop(e,board) {
-        updateTask(currentTask._id,{boardInd:boards.indexOf(board),position:0})
+        updateTask(currentTask.id,{boardInd:boards.indexOf(board),position:0})
         board.list.push(currentTask)
         const currentTaskIndex = currentBoard.list.indexOf(currentTask)
         currentBoard.list.splice(currentTaskIndex,1)
@@ -42,7 +42,7 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
     return (
         <div className='boards'>
             {boards.map(board=>
-            <div className='boards__elem' key={board.id1}
+            <div className='boards__elem' key={board.id}
                  onDragLeave={(e)=>e.target.style.background = 'white'}
                  onDragOver={(e)=>handleDragOver(e)}
                  onDrop={(e)=>handleBoardDrop(e,board)}
