@@ -39,7 +39,7 @@ const Main = () => {
         if (currentUser===null&&localStorage.getItem('token')){
             setCurrentUser(jwtDecode(localStorage.getItem('token')))
         }
-    })
+    },[])
     const addNewTask = (task) =>{
         const sendNewTask = async (task) =>{
             const position = boards[0].list.length

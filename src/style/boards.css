@@ -57,8 +57,14 @@
   justify-content: space-between;
 }
 .boards__task:hover {
-  cursor: grab;
+  cursor: pointer;
   background: lavender;
+}
+
+.boards__arow:hover {
+  width: 30px;
+  height: 30px;
+  color: red;
 }
 
 /*# sourceMappingURL=boards.css.map */

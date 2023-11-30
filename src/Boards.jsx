@@ -10,7 +10,6 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
     }
 
     function handleDragEnd(e) {
-
     }
 
     function handleDragLeave(e) {
@@ -24,6 +23,7 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
 
     function handleDrop(e, board, task) {
         e.preventDefault()
+        e.target.style.background = 'white'
         const currentDropIndex = board.list.indexOf(task)
         updateTask(task.id,{boardInd:boards.indexOf(board),position:currentDropIndex+1})
         board.list.splice(currentDropIndex+1,0,currentTask)
@@ -32,6 +32,8 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
         handleTaskDrop(currentBoard,board)
     }
     function handleBoardDrop(e,board) {
+        e.preventDefault()
+        e.target.style.background = 'white'
         updateTask(currentTask.id,{boardInd:boards.indexOf(board),position:0})
         board.list.push(currentTask)
         const currentTaskIndex = currentBoard.list.indexOf(currentTask)
@@ -57,16 +59,25 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
                      draggable={true}
                     onDoubleClick ={()=>removeTask(board,task)}>
                     {boards.indexOf(board)>0 ?
-                        <svg onClick={()=>moveTaskOnClick(board,task,-1)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             className="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <svg  onClick={()=>moveTaskOnClick(board,task,-1)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             className="bi bi-arrow-left boards__arow" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                   d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                         </svg>
                     : null}
+                    <div className='boards__tt' key={task.id}
+                         onDragStart={(e)=>handleDragStart(board,task)}
+                         onDragEnd={(e)=>handleDragEnd(e)}
+                         onDragLeave={(e)=>handleDragLeave(e)}
+                         onDragOver={(e)=>handleDragOver(e)}
+                         onDrop={(e)=>handleDrop(e,board,task)}
+                         draggable={true}
+                         onDoubleClick ={()=>removeTask(board,task)}>
                     {task.body}
+                    </div>
                     {boards.indexOf(board)<2 ?
                         <svg onClick={()=>moveTaskOnClick(board,task,1)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             className="bi bi-arrow-right" viewBox="0 0 16 16">
+                             className="bi bi-arrow-right boards__arow" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                   d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                         </svg>
