@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Input = ({value,setValue,placeholder}) => {
+const Input = ({type,value,setValue,placeholder}) => {
     return (
         <div className="ui__input">
-            <input placeholder={placeholder} type="text" value = {value} onChange={e=>setValue(e.target.value)}/>
+            <input placeholder={placeholder} type={type?type:"text"} value = {value} onChange={e=>setValue(e.target.value)}/>
         </div>
     );
 };

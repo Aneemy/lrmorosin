@@ -24,7 +24,7 @@ const Auth = ({changeUser}) => {
         }
         else{
             const response = await registration({username,password})
-            setMessage(response.message)
+            setMessage(response)
         }
     }
     const sendLogReg = async () =>{
@@ -37,32 +37,39 @@ const Auth = ({changeUser}) => {
         }
     }
     const Message = () =>{
-        if (message!==null){
-        const tempMsg = message
-        setMessage('')
-        if (tempMsg.message!==null&& !tempMsg.token){
-            return <div>
-                Вы успешно зарегистрировались
-            </div>
+            if (message!==null){
+                try {
+                    if (message.message&&!message.token){
+                        console.log('321')
+                        return <div>
+                            {message.message}
+                        </div>
+                    }
+                    else if (message.message&&message.token){
+                        console.log('123')
+                        const data = jwtDecode(message.token)
+                        const user = data
+                        localStorage.setItem('token',message.token)
+                        refreshPage(user)
+                        return <div>
+                            {`Вы успешно авторизовались, ${user.username}`}
+                        </div>
+                    }
+                }
+                catch (e){
+                    return <div>
+                        Ошибка данных
+                    </div>
+                }
+            return null
         }
-        else if (typeof(tempMsg.token) === 'string' ){
-            const data = jwtDecode(tempMsg.token)
-            const user = data
-            localStorage.setItem('token',tempMsg.token)
-            refreshPage(user)
-            return <div>
-                {`Вы успешно авторизовались, ${user}`}
-            </div>
-        }
-        return null
-    }
         }
 
     return (
         <div className="auth__bg">
             <div className="auth__content">
                 <Input value={username} setValue={setUsername} placeholder='Имя пользователя'/>
-                <Input value={password} setValue={setPassword} placeholder='Пароль'/>
+                <Input type = {'password'} value={password} setValue={setPassword} placeholder='Пароль'/>
                 <div className="auth__buttons">
                     <div className={!isLogin&&'active'} onClick={()=>sendRegReq()}>
                         Регистрация

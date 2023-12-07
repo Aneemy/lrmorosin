@@ -22,10 +22,13 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
     }
 
     function handleDrop(e, board, task) {
+        console.log('dropped')
+        e.stopPropagation()
         e.preventDefault()
         e.target.style.background = 'white'
         const currentDropIndex = board.list.indexOf(task)
-        updateTask(task.id,{boardInd:boards.indexOf(board),position:currentDropIndex+1})
+        const boardInd = boards.indexOf(board)
+        updateTask(currentTask.id,{boardInd:boardInd,position:currentDropIndex+1})
         board.list.splice(currentDropIndex+1,0,currentTask)
         const currentTaskIndex = currentBoard.list.indexOf(currentTask)
         currentBoard.list.splice(currentTaskIndex,1)
@@ -49,6 +52,7 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
                  onDragOver={(e)=>handleDragOver(e)}
                  onDrop={(e)=>handleBoardDrop(e,board)}
                  draggable={true}>
+                {board.title}
                 {board.list.map(task=>
                 <div className='boards__task' key={task.id}
                      onDragStart={(e)=>handleDragStart(board,task)}
@@ -57,7 +61,7 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
                      onDragOver={(e)=>handleDragOver(e)}
                      onDrop={(e)=>handleDrop(e,board,task)}
                      draggable={true}
-                    onDoubleClick ={()=>removeTask(board,task)}>
+                     onDoubleClick ={()=>removeTask(board,task)}>
                     {boards.indexOf(board)>0 ?
                         <svg  onClick={()=>moveTaskOnClick(board,task,-1)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-arrow-left boards__arow" viewBox="0 0 16 16">
@@ -71,8 +75,7 @@ const Boards = ({boards,setBoards,handleTaskDrop,removeTask,moveTaskOnClick}) =>
                          onDragLeave={(e)=>handleDragLeave(e)}
                          onDragOver={(e)=>handleDragOver(e)}
                          onDrop={(e)=>handleDrop(e,board,task)}
-                         draggable={true}
-                         onDoubleClick ={()=>removeTask(board,task)}>
+                         draggable={true}>
                     {task.body}
                     </div>
                     {boards.indexOf(board)<2 ?
