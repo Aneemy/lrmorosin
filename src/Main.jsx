@@ -43,7 +43,7 @@ const Main = () => {
 	const addNewTask = (task) => {
 		const sendNewTask = async (task) => {
 			const position = boards[0].list.length
-			await addTask({ title: task, position, user: currentUser.id })
+			await addTask({ title: task, position, boardInd: 0,user: currentUser.id })
 		}
 		const findBiggestId = () => {
 			return Math.max(...boards.map(board => board.list).flat().map(item => item.id)) + 1

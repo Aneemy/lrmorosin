@@ -2,7 +2,9 @@ import {URL} from './url'
 import axios from "axios";
 export async function addTask(pack){
     try {
-        const response = await axios.post(URL+'/table',pack)
+        const token = localStorage.getItem('token')
+        const response = await axios.post(URL+'/table',pack,
+            {headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 201) {
             console.log( response)
         }
@@ -14,10 +16,13 @@ export async function addTask(pack){
         console.error(e)
     }
 }
-export async function getAllTasks(userId){
+export async function getAllTasks(userId = ''){
     try {
-        console.log(123)
-        const response = await axios.get(URL+`/table/${userId}`)
+        const token = localStorage.getItem('token')
+        const response = await axios.get(URL+`/table/`,
+            {headers: {Authorization: `Bearer ${token}`}})
+        // const response = await axios.get(URL+`/table/${userId}`,
+        //     {headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 200) {
             console.log( response.data)
             return response.data
@@ -32,7 +37,8 @@ export async function getAllTasks(userId){
 }
 export async function deleteTask(taskId){
     try {
-        const response = await axios.delete(URL+`/table/${taskId}`)
+        const token = localStorage.getItem('token')
+        const response = await axios.delete(URL+`/table/${taskId}`,{headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 200) {
             console.log( response)
         }
@@ -46,7 +52,8 @@ export async function deleteTask(taskId){
 }
 export async function updateTask(taskId,pack){
     try {
-        const response = await axios.patch(URL+`/table/${taskId}`,pack)
+        const token = localStorage.getItem('token')
+        const response = await axios.patch(URL+`/table/${taskId}`,pack,{headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 200) {
             console.log( response.data)
         }
