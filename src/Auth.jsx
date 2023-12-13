@@ -39,7 +39,7 @@ const Auth = ({changeUser}) => {
     const Message = () =>{
             if (message!==null){
                 try {
-                    if (message.message&&!message.token){
+                    if (message.message&&!message.access_token){
                         console.log('321')
                         return <div>
                             {message.message}
@@ -47,7 +47,7 @@ const Auth = ({changeUser}) => {
                     }
                     else if (message.message&&message.token){
                         console.log('123')
-                        const data = jwtDecode(message.token)
+                        const data = jwtDecode(message.access_token)
                         const user = data
                         localStorage.setItem('token',message.token)
                         refreshPage(user)
