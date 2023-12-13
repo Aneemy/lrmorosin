@@ -3,7 +3,7 @@ import axios from "axios";
 export async function addTask(pack){
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.post(URL+'/table',pack,
+        const response = await axios.post(URL+'/tasks',pack,
             {headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 201) {
             console.log( response)
@@ -19,7 +19,7 @@ export async function addTask(pack){
 export async function getAllTasks(userId = ''){
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.get(URL+`/table/`,
+        const response = await axios.get(URL+`/tasks`,
             {headers: {Authorization: `Bearer ${token}`}})
         // const response = await axios.get(URL+`/table/${userId}`,
         //     {headers: {Authorization: `Bearer ${token}`}})
@@ -38,7 +38,7 @@ export async function getAllTasks(userId = ''){
 export async function deleteTask(taskId){
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.delete(URL+`/table/${taskId}`,{headers: {Authorization: `Bearer ${token}`}})
+        const response = await axios.delete(URL+`/tasks/${taskId}`,{headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 200) {
             console.log( response)
         }
@@ -53,7 +53,7 @@ export async function deleteTask(taskId){
 export async function updateTask(taskId,pack){
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.patch(URL+`/table/${taskId}`,pack,{headers: {Authorization: `Bearer ${token}`}})
+        const response = await axios.patch(URL+`/tasks/${taskId}`,pack,{headers: {Authorization: `Bearer ${token}`}})
         if (response.status == 200) {
             console.log( response.data)
         }
