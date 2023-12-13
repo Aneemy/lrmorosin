@@ -45,7 +45,7 @@ const Auth = ({changeUser}) => {
                             {message.message}
                         </div>
                     }
-                    else if (message.message&&message.token){
+                    else if (message.message&&message.access_token){
                         console.log('123')
                         const data = jwtDecode(message.access_token)
                         const user = data
