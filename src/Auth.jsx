@@ -49,7 +49,7 @@ const Auth = ({changeUser}) => {
                         console.log('123')
                         const data = jwtDecode(message.access_token)
                         const user = data
-                        localStorage.setItem('token',message.token)
+                        localStorage.setItem('token',message.access_token)
                         refreshPage(user)
                         return <div>
                             {`Вы успешно авторизовались, ${user.username}`}
