@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Input from "./Input";
-import Boards from "./Boards";
+import Tasks from "./Tasks";
 import Modal from "./Modal";
 import Auth from "./Auth";
-import { addTask, deleteTask, getAllTasks, updateTask } from "./http/table";
+import { addTask, deleteTask, getAllTasks, updateTask } from "./http/tasks";
 import { jwtDecode } from "jwt-decode";
 
 const Main = () => {
 	const [boards, setBoards] = useState([
-		{ id: 0, title: 'ToDo', list: [] },
-		{ id: 1, title: 'InProgress', list: [] },
-		{ id: 2, title: 'Done', list: [] }
+		{ id: 0, title: 'Надо сделать', list: [] },
+		{ id: 1, title: 'В процессе', list: [] },
+		{ id: 2, title: 'Сделано', list: [] }
 	])
 	const [currentUser, setCurrentUser] = useState(null)
 	const [active, setActive] = useState(false)
@@ -20,9 +20,9 @@ const Main = () => {
 	}
 	const transformArray = (array) => {
 		const newBoards = [
-			{ id: 0, title: 'ToDo', list: [] },
-			{ id: 1, title: 'InProgress', list: [] },
-			{ id: 2, title: 'Done', list: [] }
+			{ id: 0, title: 'Надо сделать', list: [] },
+			{ id: 1, title: 'В процессе', list: [] },
+			{ id: 2, title: 'Сделано', list: [] }
 		]
 		array.map((elem => {
 			newBoards[elem.boardInd].list.splice(elem.position, 0, { id: elem._id, body: elem.title, userId: elem.user })
@@ -97,12 +97,12 @@ const Main = () => {
 		<div className="container">
 			{currentUser === null && <Auth changeUser={setCurrentUser} />}
 			{currentUser !== null &&
-				<div onClick={()=>handleUnLog()} style={{cursor:"pointer",color:'white'}}>
+				<div onClick={()=>handleUnLog()} className='main__unlog' >
 				Выйти из учетной записи {currentUser.username}
 			</div>}
 			<Input addNewTask={addNewTask} />
-			{<Boards boards={boards} setBoards={setBoards} removeTask={removeTask} handleTaskDrop={handleTaskDrop}
-				moveTaskOnClick={moveTaskOnClick} />}
+			{<Tasks boards={boards} setBoards={setBoards} removeTask={removeTask} handleTaskDrop={handleTaskDrop}
+					moveTaskOnClick={moveTaskOnClick} />}
 			<Modal active={active} setActive={setActive} />
 		</div>
 	);

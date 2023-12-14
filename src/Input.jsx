@@ -17,7 +17,7 @@ const Input = ({addNewTask}) => {
         <div onKeyPress={e=>handleEnterPress(e)} className='boards__input'>
             <input value = {input}  type="text" onChange = {e=>setInput(e.target.value)}/>
             <button onClick={() => handleClick()}>
-                Добавить задачку
+                Добавить
             </button>
         </div>
     );

@@ -147,7 +147,7 @@ p {
   z-index: 2;
   height: 100vh;
   width: 100vw;
-  background: black;
+  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,10 +158,10 @@ p {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: white;
+  background: #fff8e8;
   width: 500px;
   height: 300px;
-  border: 10px lavender solid;
+  border: 10px #a799b7 solid;
   border-radius: 20px;
 }
 .auth__content > div {
@@ -182,15 +182,15 @@ p {
 }
 .auth__buttons > div:hover {
   cursor: pointer;
-  background: dodgerblue;
+  background: #7b3f00;
   color: white;
 }
 .auth__buttons > div.active {
   color: white;
-  background: dodgerblue;
+  background: #7b3f00;
 }
 .auth__buttons > div.active:hover {
-  background: blue;
+  background: #a799b7;
 }
 
 .ui__input input {
@@ -204,7 +204,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: black;
+  background: white;
 }
 
 /*# sourceMappingURL=style.css.map */

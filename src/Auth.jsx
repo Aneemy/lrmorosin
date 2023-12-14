@@ -41,23 +41,23 @@ const Auth = ({changeUser}) => {
                 try {
                     if (message.message&&!message.access_token){
                         console.log('321')
-                        return <div>
+                        return <div style={{fontStyle:'italic'}}>
                             {message.message}
                         </div>
                     }
                     else if (message.message&&message.access_token){
-                        console.log('123')
                         const data = jwtDecode(message.access_token)
                         const user = data
                         localStorage.setItem('token',message.access_token)
                         refreshPage(user)
-                        return <div>
-                            {`Вы успешно авторизовались, ${user.username}`}
+                        return <div style={{fontStyle:'italic'}}>
+                            {`Вы успешно авторизовались,`}
+                            <h4>{user.username}</h4>
                         </div>
                     }
                 }
                 catch (e){
-                    return <div>
+                    return <div style={{fontStyle:'italic'}} >
                         Ошибка данных
                     </div>
                 }
